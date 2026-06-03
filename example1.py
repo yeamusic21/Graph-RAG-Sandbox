@@ -3,17 +3,22 @@
 # -----------------------------------
 
 from langchain_community.document_loaders import PubMedLoader
-from langchain_openai import OpenAIEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_core.vectorstores import InMemoryVectorStore
 
 # Search PubMed
-loader = PubMedLoader(query="lung cancer immunotherapy", load_max_docs=10)
+loader = PubMedLoader(
+    query="lung cancer immunotherapy",
+    load_max_docs=10
+)
 
 # Load documents
 documents = loader.load()
 
-# Create embeddings
-embeddings = OpenAIEmbeddings()
+# Create local embeddings
+embeddings = HuggingFaceEmbeddings(
+    model_name="BAAI/bge-small-en-v1.5"
+)
 
 # Create vector store
 vector_store = InMemoryVectorStore.from_documents(

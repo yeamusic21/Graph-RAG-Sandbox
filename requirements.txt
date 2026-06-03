@@ -3,3 +3,6 @@ langchain
 langchain-community
 langchain-openai 
 biopython
+langchain-huggingface
+sentence-transformers
+xmltodict
